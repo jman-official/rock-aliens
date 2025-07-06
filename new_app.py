@@ -18,7 +18,6 @@ df['Quarter'] = df['Date'].dt.to_period("Q")
 df['Day'] = df['Date'].dt.date
 
 df['Fees'] = df['Fees'].replace('[\u20B9,]', '', regex=True).astype(float)
-df = df[df["Membership"] != "Active_Member"]
 
 # Sidebar view selection
 st.sidebar.header("🔎 Filter Data")
@@ -51,6 +50,8 @@ col3.metric("🎯 Total Rentals", int(filtered['Rentals'].sum()))
 col4.metric("🙋‍♂️ Unique Customers", filtered['Name'].nunique())
 
 st.divider()
+
+filtered = filtered[filtered["Membership"] != "Active_Member"]
 
 # Membership Chart
 with st.expander("📌 Membership Type Distribution", expanded=True):
