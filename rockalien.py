@@ -14,6 +14,7 @@ df['Quarter'] = df['Date'].dt.to_period("Q")
 df['Day'] = df['Date'].dt.date
 
 df['Fees'] = df['Fees'].replace('[\u20B9,]', '', regex=True).astype(float)
+df = df[df["Membership"] != "Active_Member"]
 
 st.title("📊 Membership & Rentals")
 
