@@ -51,11 +51,12 @@ col4.metric("🙋‍♂️ Unique Customers", filtered['Name'].nunique())
 
 st.divider()
 
-filtered = filtered[filtered["Membership"] != "Active_Member"]
+# filtered = filtered[filtered["Membership"] != "Active_Member"]
 
 # Membership Chart
 with st.expander("📌 Membership Type Distribution", expanded=True):
-    membership_counts = filtered['Membership'].value_counts().reset_index()
+    membership_counts = filtered[filtered["Membership"] != "Active_Member"]
+    membership_counts = membership_counts['Membership'].value_counts().reset_index()
     membership_counts.columns = ['Membership Type', 'Count']
 
     fig1 = px.bar(
